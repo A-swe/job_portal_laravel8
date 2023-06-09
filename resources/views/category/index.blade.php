@@ -23,13 +23,19 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($lists as $list)
+                            @foreach ($category as $list)
                                 <tr>
                                     <th>{{ $loop->iteration }}</th>
                                     <td>{{ $list->name }}</td>
                                     <td>
                                         <a class="btn btn-secondary btn-sm"
                                             href="{{ route('category.edit', $list->id) }}">Edit</a>
+                                        
+                                        <form action="{{route('category.destroy', $list->id)}}" class="d-inline" method="POST">
+                                            @csrf
+                                            @method('delete')
+                                            <button class="btn btn-danger btn-sm">Delete</button>
+                                        </form>
                                     </td>
                                     <td>{{ $list->created_at }}</td>
                                 </tr>
